@@ -1,0 +1,118 @@
+<div class="jumbotron">
+        <h1 class="display-4">Panel Administrador</h1>
+        <p class="lead">Tienes el permiso concebido por Comodify para manejar el panel administrador de datos.</p>
+        <hr class="my-4">
+        <p>Eres parte de los administradores del servicio de Comodify, tienes una gran responsabilidad con la empresa.
+        </p>
+        <a href="/logout">Salir del panel administrador</a>
+</div>
+<div class="container p-2">
+        <p>
+                <a class="btn btn-lg text-center" data-toggle="collapse" href="#multiCollapseExample1" role="button"
+                        aria-expanded="false" aria-controls="multiCollapseExample1">Perfiles</a>
+                <button class="btn btn-lg" type="button" data-toggle="collapse" data-target="#multiCollapseExample2"
+                        aria-expanded="false" aria-controls="multiCollapseExample2">Rutas</button>
+                <button class="btn btn-lg" type="button" data-toggle="collapse" data-target=".multi-collapse"
+                        aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Ambas</button>
+        </p>
+        <div class="row">
+                <div class="col">
+                        <div class="collapse multi-collapse" id="multiCollapseExample1">
+                                <div class="card card-body">
+                                        <a href="/links/users" class="text-white"><button type="button"
+                                                        class="btn blue darken-4">Usuarios Registrados</button></a>
+                                        <br>
+                                        <a href="/links/passagers" class="text-white"><button type="button"
+                                                        class="btn light-blue accent-4">Pasajeros
+                                                        Registrados</button></a>
+                                        <br>
+                                        <a href="/links/drivers" class="text-white"><button type="button"
+                                                        class="btn green darken-4">Conductores Registrados</button></a>
+                                        <br>
+                                        <a href="/links/badDrivers" class="text-white"><button type="button"
+                                                        class="btn pink lighten-1">Conductores Bajo rendimiento</button></a>
+                                        <br>
+                                          <a href="/links/badPass" class="text-white"><button type="button"
+                                                        class="btn purple">pasajeros Bajo rendimiento</button></a>
+                                        <br>
+                                        <a class="text-white"><button type="button" class="btn blue darken-3"
+                                                        data-toggle="modal" data-target="#exampleModal">
+                                                        Administradores
+                                                </button></a>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                                                Administradores</h5>
+                                                                        <button type="button" class="close"
+                                                                                data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                        <form action="/links/admins" method="post">
+                                                                                <div class="form-group">
+                                                                                        <label for="exampleInputEmail1">Administrador
+                                                                                                Principal</label>
+                                                                                        <input type="password"
+                                                                                                class="form-control"
+                                                                                                name="adminP">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                        <label
+                                                                                                for="exampleInputPassword1">Clave</label>
+                                                                                        <input type="password"
+                                                                                                class="form-control"
+                                                                                                name="adminClave">
+                                                                                </div>
+                                                                                <button type="submit"
+                                                                                        class="btn light-blue darken-4">Ingresar</button>
+                                                                        </form>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                <div class="col">
+                        <div class="collapse multi-collapse" id="multiCollapseExample2">
+                                <div class="card card-body">
+                                        <a href="/links/rutas" class="text-white"><button type="button"
+                                                        class="btn blue-grey darken-4">Rutas Registradas</button></a>
+                                        <br>
+                                        <a href="/links/rutasSolicitads" class="text-white">
+                                                <button type="button" class="btn purple darken-4">Solicitudes
+                                                        Realizadas</button></a>
+                                        <br>
+                                        <a href="/links/rutasActuales" class="text-white">
+                                                <button type="button" class="btn blue-grey darken-1">Viajes En
+                                                        funcionamiento</button></a>
+                                        <br>
+                                        <a href="/links/rutasCobro" class="text-white"><button type="button"
+                                                        class="btn green darken-3">Cobrar rutas en
+                                                        funcionamiento</button></a>
+                                        <br>
+                                        <a href="/links/rutasLiquidaciones" class="text-white">
+                                                <button type="button" class="btn  light-blue darken-4">Liquidar rutas
+                                                        con Link de cobro</button></a>
+                                        <br>
+                                        <a href="/links/adeudados" class="text-white"><button type="button"
+                                                        class="btn deep-purple darken-4">Deudores que ya tienen
+                                                        link</button></a>
+                                        <br>
+                                        <a href="/links/actividadFechas" class="text-white"><button type="button"
+                                                        class="btn teal darken-4">Fechas de actualizaciones</button></a>
+
+                                        <br>
+                                        <a href="/links/rutaInactivas" class="text-white"><button type="button"
+                                                        class="btn lime darken-4">Rutas inactivas despues de 4
+                                                        meses</button></a>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>

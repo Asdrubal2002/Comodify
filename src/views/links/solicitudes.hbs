@@ -1,0 +1,110 @@
+<script language="JavaScript">
+    window.history.replaceState({}, '', 'addPassagersConnectionSuccess');
+</script>
+<div class="spinner" id="loader"></div>
+<div class="container p-2">
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Pasajeros</h4>
+        <p>Estas son las solicitudes de pasajeros que quieren ir contigo en tu ruta, podrás observar su clasificación de
+            estrellas, su maxima clasificacion es de 5
+            estrellas.
+        </p>
+        <hr>
+        <p class="mb-0">Te deseamos suerte con tus nuevos pasajeros</p>
+    </div>
+    <div class="row my-flex-card">
+        {{#each solicitudes}}
+        <input class="mult" id="mult" value="{{puntuacion}}">
+        <div class="col-lg-4 col-sm-12">
+            <div class="card text-center">
+                <div class="card-header" style="font-size: 3vh;">
+                    {{nombre}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{parada}}</h5>
+                    <p class="datosCards" style="font-size: 2.5vh;">{{precio}}</p>
+                    <div class="row">
+                        <div class="col p-2">
+                            <form action="/links/ViajeSelectNo/{{id}}">
+                                <button type="submit" class="btn red darken-4 seguir">negar</button>
+                            </form>
+                        </div>
+                        <div class="col p-2">
+                            <form action="/links/viajeSelect/{{idRuta}}" method="POST">
+                                <input name="idS" class="solici" value="{{id}}">
+                                <input name="parada" class="solici" value="{{parada}}">
+                                <input name="precio" class="solici" value="{{precio}}">
+                                <input name="idPasajero" class="solici" value="{{idPasajero}}">
+                                <input name="nombre" class="solici" value="{{nombre}}">
+
+                                <button type="submit" class="btn blue darken-3 seguir">Aceptar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer" id="clasi" style="font-size: 6vh;">
+                     <p style="font-size: 2.2vh; color:rgb(136, 136, 136)">Clasificación del pasajero</p>
+                    <p id="demo"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="row">
+        <div class="card">
+            <div class="card-body grey darken-2 text-white text-center">
+                No tienes pasajeros en tu ruta, espera que vayan llegando.
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+</div>
+<div class="botons">
+    <div class="fixed-action-btn  toolbar">
+        <a class="btn-floating btn-large black">
+            <i class="large fa fa-plus"></i>
+        </a>
+        <ul>
+            <li><a class="btn-floating seguir" href="/links/routesCreated"><i class="fas fa-arrow-left"></i></a></li>
+            <li><a class="btn-floating seguir" href="/links/profiles"><i class="fa fa-address-book"></i></a></li>
+            <li><a class="btn-floating seguir" href="/links/routes"><i class="fa fa-route"></i></a></li>
+            <li><a class="btn-floating seguir" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, {
+            toolbarEnabled: true
+        });
+    });
+    window.onload = estreella;
+    function estreella() {
+        var start = document.getElementById("mult").value;
+        if (start >= 5 || start == 0) {
+            document.getElementById("demo").innerHTML = "★★★★★";
+            document.getElementById("demo").style.color = "#33691e";
+        }
+        else if (start < 5 && start >= 4) {
+            document.getElementById("demo").innerHTML = "★★★★";
+            document.getElementById("demo").style.color = "#7cb342";
+        }
+        else if (start < 4 && start >= 3) {
+            document.getElementById("demo").innerHTML = "★★★";
+            document.getElementById("demo").style.color = "#ffc107";
+        }
+        else if (start < 3 && start >= 2) {
+            document.getElementById("demo").innerHTML = "★★";
+            document.getElementById("demo").style.color = "#e65100";
+        }
+        else if (start < 2 && start >= 1) {
+            document.getElementById("demo").innerHTML = "★";
+            document.getElementById("demo").style.color = "#ff5722";
+        }
+    }
+    $('.seguir').on("click", function () {
+        document.getElementById("loader").style.display = "block";
+    });
+</script>

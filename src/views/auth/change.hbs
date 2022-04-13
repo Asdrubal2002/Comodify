@@ -1,0 +1,82 @@
+<div class="containerBoton">
+        <input type="checkbox" id="btn-mas">
+        <div class="btn-mas">
+            <a id="ir" for="btn-mas" class="fas fa-arrow-left" href="/signin"></a>
+        </div>
+    </div>
+<div class="container p-4">
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <div class="card text-center">
+        <div class="card-header">
+          <h3>Cambiar</h3>
+        </div>
+        <div class="card-body">
+          <form action="/change" method="POST" onsubmit="return empieza();">
+            <div class="form-group">
+              <input type="type" id="usuario" name="username" placeholder="Nombre Usuario" class="form-control textos" autofocus>
+            </div>
+            <div class="form-group">
+               <div class="campo">
+                <input type="password" id="clave" name="pass" placeholder="Clave" class="form-control textos">
+                <span>Mostrar</span>
+              </div>
+            </div>
+            <div class="form-group">
+                <div class="campo2">
+                <input type="password" id="clave2" name="pass2" placeholder="Clave Nueva" class="form-control textos">
+                <span>Mostrar</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-danger btn-block textos btn-lg">
+                Cambiar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.querySelector('.campo span').addEventListener('click', e => {
+    const passwordInput = document.querySelector('#clave');
+    if (e.target.classList.contains('show')) {
+      e.target.classList.remove('show');
+      e.target.textContent = 'Ocultar';
+      passwordInput.type = 'text';
+    } else {
+      e.target.classList.add('show');
+      e.target.textContent = 'Mostrar';
+      passwordInput.type = 'password';
+    }
+  });
+  document.querySelector('.campo2 span').addEventListener('click', e => {
+    const passwordInput = document.querySelector('#clave2');
+    if (e.target.classList.contains('show')) {
+      e.target.classList.remove('show');
+      e.target.textContent = 'Ocultar';
+      passwordInput.type = 'text';
+    } else {
+      e.target.classList.add('show');
+      e.target.textContent = 'Mostrar';
+      passwordInput.type = 'password';
+    }
+  });
+ function empieza() {
+    var usuario, clave, clave2, expresion;
+    usuario = document.getElementById("usuario").value;
+    clave = document.getElementById("clave").value;
+    clave2 = document.getElementById("clave2").value;
+    if (usuario === "" || clave === "" || clave2 === "") {
+      swal.fire({
+        title: "Error",
+        text: "Todos los campos son obligatorios",
+        timer: 3000,
+        showConfirmButton: false
+      });
+      return false;
+    }
+  }
+</script>

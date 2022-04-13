@@ -1,0 +1,186 @@
+<div class="spinner" id="loader"></div>
+<div class="container p-2">
+    <form action="/links/addPassager" method="POST" onsubmit="return validar()">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Digita tu nombre">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="apellido">Apellido</label>
+                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Digita tu apellido">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="edad">Edad</label>
+            <input type="number" class="form-control" id="edad" name="edad" placeholder="Digita tu edad">
+        </div>
+        <div class="form-group">
+            <label for="identificacion">Identificación</label>
+            <input type="number" class="form-control" id="identificacion" name="identificacion"
+                placeholder="Numero de identificación">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="departamento">Departamento</label>
+                <select id="departamento" name="departamento" class="form-control">
+                    <option value="" selected>Selecciona...</option>
+                    <option>Amazonas</option>
+                    <option>Antioquia</option>
+                    <option>Arauca</option>
+                    <option>Atlántico</option>
+                    <option>Bogotá</option>
+                    <option>Bolívar</option>
+                    <option>Boyacá</option>
+                    <option>Caldas</option>
+                    <option>Caquetá</option>
+                    <option>Casanare</option>
+                    <option>Cauca</option>
+                    <option>Chocó</option>
+                    <option>Cesar</option>
+                    <option>Córdoba</option>
+                    <option>Cundinamarca</option>
+                    <option>Guainía</option>
+                    <option>Guaviare</option>
+                    <option>Huila</option>
+                    <option>La Guajira </option>
+                    <option>Magdalena </option>
+                    <option>Meta </option>
+                    <option>Nariño</option>
+                    <option>Norte de Santander </option>
+                    <option>Putumayo</option>
+                    <option>Quindío</option>
+                    <option>Risaralda</option>
+                    <option>San Andrés y Providencia </option>
+                    <option>Santander</option>
+                    <option>Sucre </option>
+                    <option>Tolima</option>
+                    <option>Valle del Cauca </option>
+                    <option>Vaupés</option>
+                    <option>Vichada</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="municipio">Ciudad</label>
+                <input type="text" class="form-control" id="municipio" name="municipio" placeholder="Ciudad">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="celular">Celular</label>
+                <input type="number" class="form-control" id="celular" name="celular" placeholder="Numero de Celular">
+            </div>
+            <div class="input-container cta">
+                <label class="checkbox-container textos">
+                    <input type="checkbox" name="test" id="test" class="check">
+                    <span class="checkmark"></span>
+                    Acepta la responsabilidad del uso de comodify
+                </label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg p-6">Registrarme</button>
+    </form>
+</div>
+<br>
+<div class="botons">
+    <div class="fixed-action-btn toolbar">
+        <a class="btn-floating btn-large black">
+            <i class="large fa fa-plus"></i>
+        </a>
+        <ul>
+            <li><a class="btn-floating seguir" href="javascript: history.go(-1)"><i class="fas fa-arrow-left"></i></a>
+            </li>
+            <li><a class="btn-floating seguir" href="/links/profiles"><i class="fa fa-address-book"></i></a></li>
+            <li><a class="btn-floating seguir" href="/links/routes"><i class="fa fa-route"></i></a></li>
+            <li><a class="btn-floating seguir" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, {
+            toolbarEnabled: true
+        });
+    });
+    function validar() {
+        //Aca aprendes. 
+        var nombre, apellido, edad, ident, ciudad, depart, telefono;
+        var isChecked = document.getElementById('test').checked;
+        nombre = document.getElementById("nombre").value;
+        apellido = document.getElementById("apellido").value;
+        edad = document.getElementById("edad").value;
+        ident = document.getElementById("identificacion").value;
+        ciudad = document.getElementById("municipio").value;
+        depart = document.getElementById("departamento").value;
+        telefono = document.getElementById("celular").value;
+
+        if (nombre === "" || apellido === "" || edad === "" || ident === "" || ciudad === "" || depart === "" || telefono === "") {
+            swal.fire({
+                title: "FALTAN",
+                text: "DATOS POR LLENAR",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        }
+        else if (nombre.length > 30) {
+            swal.fire({
+                title: "Nombre",
+                text: "ES MUY EXTENSO",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        }
+        else if (telefono.length != 10) {
+            swal.fire({
+                title: "Celular",
+                text: "NO ES VALIDO",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        }
+        else if (ident.length != 10) {
+            swal.fire({
+                title: "Identificación",
+                text: "NO ES VALIDA",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        }
+        else if (isNaN(telefono)) {
+            swal.fire({
+                title: "Teléfono",
+                text: "NO ES VALIDO",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        }
+        else if (isNaN(ident)) {
+            swal.fire({
+                title: "Identificación",
+                text: "NO ES VALIDA",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        }
+        else if (!isChecked) {
+            swal.fire({
+                title: "Error",
+                text: 'No Aceptas la responsabilidad',
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        }
+        else {
+            document.getElementById("loader").style.display = "block";
+        }
+    }
+    $('.seguir').on("click", function () {
+        document.getElementById("loader").style.display = "block";
+    });
+</script>

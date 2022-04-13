@@ -1,0 +1,140 @@
+<div class="spinner" id="loader"></div>
+<div class="container p-4">
+    <div class="row">
+        {{#each datesDriver}}
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="../img/pass1.jpg">
+                        <span class="card-title">{{nombre}}</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light blue darken-4 seguir"
+                            href="/links/editDatesDriver/{{id}}"><i class="fas fa-pencil-alt"></i></a>
+                    </div>
+                    <div class="card-content">
+                        <p>Vive en {{departamento}} - {{municipio}}</p>
+                        <p>Disponibilidad: {{disponible}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="/links/validationCreateRoute" class="btn btn-warning blue darken-4 seguir">Crear ruta</a><br><br>
+        <!-- Button trigger modal -->
+        <div class="row">
+        </div>
+        <button type="button" class="btn red darken-2" data-toggle="modal" data-target="#exampleModal">
+            Condiciones
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Conductor</h5>
+                    </div>
+                    <div class="modal-body">
+                        <ol>
+                            <li>Debes cambiar los estados de ruta hasta finalizar tu ruta. Ya que este informa a tus
+                                pasajeros el desarrollo de todo el viaje.</li>
+                            <li>Debes ser responsable con los tiempos y respetuoso con los pasajeros que eligieron tu
+                                ruta. Si no puedes prestar el servicio cambia tu estado a "HOY NO ESTOY DISPONIBLE" 30
+                                minutos antes de la hora pactada; si puedes antes mejor.</li>
+                            <li>Tu suscripción para prestar el servicio y obtener las ganancias es de 12.000 pesos colombianos, solo se te cobran cuando sumes ese valor.
+                            <li>A la hora de pagar debes de rellenar toda la información con la que te registraste en
+                                Comodify si no, no se te hará válido tu pago porque necesitamos que todo se haga en
+                                orden y con las personas registradas dentro del sistema.</li>
+                        </ol>
+                        Los pasajeros te pueden calificar tu servicio. Si llegas a una puntuación demasiado baja, se
+                        te
+                        inhabilitara tu cuenta de conductor.
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn  red darken-2" data-dismiss="modal">Entendido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="../img/background.jpg">
+                        <span class="card-title">Conductor</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light blue darken-4 seguir"
+                            href="/links/createProfileDriver"><i class="fa fa-address-book"></i></a>
+                    </div>
+                    <div class="card-content">
+                        <p>No tienes perfil de conductor para crear rutas compartidas. <br>Presiona el botón <i
+                                class="fa fa-address-book"></i> para crearlo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="intro">
+            <div class="col s12 m5">
+                <div class="card-panel  pink darken-3">
+                    <span class="white-text">
+                        <h4>Importante</h4>
+                        Después de crear tu perfil de conductor debes subir 4 fotos o pantallazos de los siguientes
+                        Documentos.
+                        <br>
+                        1- Licencia de conducción
+                        <br>
+                        2- Soat (Seguro)
+                        <br>
+                        3- Antecedentes Judiciales
+                        <br>
+                        4- Foto del vehículo que se observe claramente su placa.
+                        <br>
+                        La única manera de subirlos es en un computador ingresando a www.comodify.digital en la sección
+                        de
+                        Conductor, en el ítem "Subir documentos". Deben nombrarse
+                        con el prefijo del nombre del documento seguido de su número de documento de identidad.
+                        <br>
+                        Licencia000000000
+                        <br>
+                        Soat000000000
+                        <br>
+                        Antecedentes0000000000
+                        <br>
+                        Vehiculo0000000000
+                        <br><br>
+                        Si haces el registro y tus fotos no tienen las indicaciones anteriormente explicadas, no se le
+                        proporcionara permiso
+                        de prestar el servicio con Comodify.
+                        <br>
+                    </span>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+<div class="botons">
+    <div class="fixed-action-btn toolbar">
+        <a class="btn-floating btn-large black">
+            <i class="large fa fa-plus"></i>
+        </a>
+        <ul>
+            <li><a class="btn-floating seguir" href="/profile"><i class="fas fa-arrow-left"></i></a></li>
+            <li><a class="btn-floating seguir" href="/links/profiles"><i class="fa fa-address-book"></i></a></li>
+            <li><a class="btn-floating seguir" href="/links/routes"><i class="fa fa-route"></i></a></li>
+            <li><a class="btn-floating seguir" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, {
+            toolbarEnabled: true
+        });
+    });
+
+    $('.seguir').on("click", function () {
+        document.getElementById("loader").style.display = "block";
+    });
+</script>

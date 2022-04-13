@@ -1,0 +1,65 @@
+<div class="jumbotron">
+    <h6 class="display-4">Conductor: {{datoConductor.id}}</h6>
+    <p class="lead">Esta ruta esta a cargo de {{datoConductor.nombre}} {{datoConductor.apellido}} tiene
+        {{datoConductor.edad}} años</p>
+    <p>La placa de su automovil es: {{datoConductor.placa}}</p>
+    <p>Su disponibilidada es: {{datoConductor.disponible}}</p>
+    <p>El nombre de sus documentos deben de ser encontrados de la siguiente manera:
+        Soat{{datoConductor.identificacion}},
+        Licencia{{datoConductor.identificacion}}, Vehiculo{{datoConductor.identificacion}},
+        Antecedentes{{datoConductor.identificacion}}.
+    </p>
+    <hr class="my-4">
+    <form action="/links/autorizarDriver/{{datoConductor.id}}" method="POST" class="autorizacion">
+        <p>Autorizas que {{datoConductor.nombre}} {{datoConductor.apellido}} sea conductor de Comidfy</p>
+        <select class="form-control form-control-lg" name="disponible" id="disponible ">
+            <option>No</option>
+            <option>Si</option>
+        </select><br>
+        <button type="submit" class="btn blue darken-1">Autorizo</button>
+    </form>
+    <br><br>
+
+    <form action="/links/driverDelete/{{datoConductor.id}}" class="ActionForm">
+        <button type="submit" class="btn  red darken-3"><i class="fa fa-trash" aria-hidden="true"></i></button>
+    </form>
+</div>
+<script>
+     $('.autorizacion').submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Confirmación',
+            text: "¿Quiere cambiar la diponibilidad de este conductor?",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#1e88e5',
+            cancelButtonText: 'No, Autorizo',
+            confirmButtonText: 'Si, Autorizo',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+    });
+
+
+
+    $('.ActionForm').submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Confirmación',
+            text: "¿De verdad quieres eliminar el conductor?",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#c51162',
+            cancelButtonText: 'No, Eliminar',
+            confirmButtonText: 'Si, Eliminar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+    });
+</script>

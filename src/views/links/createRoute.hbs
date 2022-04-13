@@ -1,0 +1,204 @@
+<div class="spinner" id="loader"></div>
+<div class="container p-2">
+    <form action="/links/addRoute" method="POST" onsubmit="return validar()">
+        <h5>Crea tu ruta</h5>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="dias">Días</label>
+                <input type="text" class="form-control" id="dias" name="dias" placeholder="Días disponibles">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="hora">Hora</label>
+                <input type="text" class="form-control" id="hora" name="hora" placeholder="Hora de salida">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fechaInicial">Fecha Inicial que inicia la ruta</label>
+                <input type="date" class="form-control" id="fechaInicial" name="fechaInicial">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="asientos">Asientos</label>
+                <select id="asientos" name="asientos" class="form-control">
+                    <option value="" selected>Selecciona...</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="lugarInicial">Punto específico donde empieza la ruta</label>
+                <input type="text" class="form-control" id="lugarInicial" name="lugarInicial"
+                    placeholder="Ejemplo: Parque de aranjuez">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="localidad">Localidad</label>
+                <input type="text" class="form-control" id="localidad" name="localidad"
+                    placeholder="Barrio donde sale la ruta">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="lugarFinal">Localidad final</label>
+                <input type="text" class="form-control" id="lugarFinal" name="lugarFinal"
+                    placeholder="Barrio donde termina la ruta.">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="comentario">Especificaciones</label>
+                <textarea type="text" class="form-control" id="comentario" name="comentario"
+                    placeholder="Escribe donde te estacionas para esperar a tus pasajeros, y caracteristicas del auto."
+                    rows="3"></textarea>
+            </div>
+        </div>
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <button class="btn  btn-lg" type="button" data-toggle="collapse" data-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">Primera parada</button>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                    data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="form-group col-md-12">
+                            <label for="parada1">Destino 1</label>
+                            <input type="text" class="form-control" id="parada1" name="parada1"
+                                placeholder="primer lugar al pasar">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="precioParada1">Precio económico</label>
+                            
+                            <input type="number" class="form-control precios" id="precioParada1" name="precioParada1"
+                                placeholder="Sin puntos ni comas. 2500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <button class="btn btn-primary btn-lg" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="false" aria-controls="collapseTwo">Segunda
+                    Parada</button>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="form-group col-md-12">
+                            <label for="parada2">Destino 2</label>
+                            <input type="text" class="form-control" id="parada2" name="parada2"
+                                placeholder="segundo lugar al pasar">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="precioParada2">Precio económico</label>
+                            <input type="number" class="form-control precios" id="precioParada2" name="precioParada2"
+                                placeholder="Sin puntos ni comas. 2500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <button class="btn btn-primary btn-lg" type="button" data-toggle="collapse" data-target="#collapseThree"
+                    aria-expanded="false" aria-controls="collapseThree">Tercer
+                    Parada</button>
+
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="form-group col-md-12">
+                            <label for="parada3">Destino 3</label>
+                            <input type="text" class="form-control" id="parada3" name="parada3"
+                                placeholder="Tercer lugar al pasar">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="precioParada3">Precio económico</label>
+                            <input type="number" class="form-control precios" id="precioParada3" name="precioParada3"
+                                placeholder="Sin puntos ni comas. 2500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <button class="btn btn-primary btn-lg" type="button" data-toggle="collapse" data-target="#collapseFour"
+                    aria-expanded="false" aria-controls="collapseFour">Cuarta
+                    Parada</button>
+
+                <div id="collapseFour" class="collapse" aria-labelledby="collapseFour" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="form-group col-md-12">
+                            <label for="parada4">Destino 4</label>
+                            <input type="text" class="form-control" id="parada4" name="parada4"
+                                placeholder="Cuarto lugar al pasar">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="precioParada4">Precio económico</label>
+                            <input type="number" class="form-control precios" id="precioParada4" name="precioParada4"
+                                placeholder="Sin puntos ni comas. 2500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary blue-grey darken-3 p-6">Crear Ruta</button>
+    </form>
+</div>
+<br>
+<div class="botons">
+    <div class="fixed-action-btn toolbar">
+        <a class="btn-floating btn-large black">
+            <i class="large fa fa-plus"></i>
+        </a>
+        <ul>
+            <li><a class="btn-floating seguir" href="javascript: history.go(-1)"><i class="fas fa-arrow-left"></i></a>
+            </li>
+            <li><a class="btn-floating seguir" href="/links/profiles"><i class="fa fa-address-book"></i></a></li>
+            <li><a class="btn-floating seguir" href="/links/routes"><i class="fa fa-route"></i></a></li>
+            <li><a class="btn-floating seguir" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, {
+            toolbarEnabled: true
+        });
+    });
+    $('.precios').on('input', function () {
+        this.value = this.value.replace(/[^0-9,]/g, '').replace(/,/g, '.');
+    });
+    function validar() {
+        //Aca aprendes. 
+        var dias, hora, asientos, lugarInicial, localidad, lugarFinal, fechaInicial,
+            comentario, parada1, precioParada1,
+
+            dias = document.getElementById("dias").value;
+        hora = document.getElementById("hora").value;
+        asientos = document.getElementById("asientos").value;
+        lugarInicial = document.getElementById("lugarInicial").value;
+        localidad = document.getElementById("localidad").value;
+        lugarFinal = document.getElementById("lugarFinal").value;
+        fechaInicial = document.getElementById("fechaInicial").value;
+        comentario = document.getElementById("comentario").value;
+        parada1 = document.getElementById("parada1").value;
+        precioParada1 = document.getElementById("precioParada1").value;
+
+        parada2 = document.getElementById("parada2").value;
+        precioParada2 = document.getElementById("precioParada2").value;
+        parada3 = document.getElementById("parada3").value;
+        precioParada3 = document.getElementById("precioParada3").value;
+        parada4 = document.getElementById("parada4").value;
+        precioParada4 = document.getElementById("precioParada4").value;
+        if (dias === "" || hora === "" || asientos === "" || lugarInicial === "" || localidad === "" || lugarFinal === "" ||
+            fechaInicial === "" || comentario === "" || parada1 === "" || precioParada1 === "" || parada2 === "" || precioParada2 === "" || parada3 === "" || precioParada3 === "" || parada4 === "" || precioParada4 === "") {
+            swal.fire({
+                title: "FALTAN",
+                text: "DATOS POR LLENAR",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        } else {
+            document.getElementById("loader").style.display = "block";
+        }
+    }
+
+    $('.seguir').on("click", function () {
+        document.getElementById("loader").style.display = "block";
+    });
+</script>

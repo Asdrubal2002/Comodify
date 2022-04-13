@@ -1,0 +1,103 @@
+<div class="spinner" id="loader"></div>
+<div class="container p-2">
+    <div class="row my-flex-card">
+        {{#each routes}}
+        <input class="estados" id="pago" value="{{linkCobro}}">
+        <div class="col-lg-4 col-sm-12 col-md-12">
+            <div class="card text-center">
+                <div class="card-header" style="font-size: 3vh;">
+                    {{lugarInicial}}-{{lugarFinal}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{parada}}</h5>
+                    <p class="datosCards" style="font-size: 2.5vh;">Disponibilidad : {{ocupacion}}</p>
+                    <p class="datosCards" style="font-size: 2.5vh;">Pago a Comodify : ${{precioPagar}}</p>
+                    <a href="/links/editRoute/{{id}}" class="btn red darken-3 seguir">Editar</a>
+                    <a href="{{linkCobro}}" class="btn seguir" style="background: rgb(17, 67, 124);"
+                        id="btnPagar">pagar</a>
+                    <br><br>
+                    <button class="btn blue-grey darken-3 col-sm-12" type="button" data-toggle="collapse"
+                        data-target=".multi-collapse" aria-expanded="false"
+                        aria-controls="multiCollapseExample1 multiCollapseExample2">Estados</button>
+                    <div class="row">
+                        <div class="col">
+                            <div class="collapse multi-collapse" id="multiCollapseExample2">
+                                <div class="card card-body" style="font-size: 2vh;">
+                                    <i class="fas fa-users"></i>Hacia el lugar de encuentro<br><br>
+                                    <i class="fas fa-hand-paper"></i>En espera de pasajeros<br><br>
+                                    <i class="fa fa-car"></i>En marcha hacia los destinos<br><br>
+                                    <i class="fa fa-route"></i>Finalice toda la ruta<br><br>
+                                    <i class="fas fa-times-circle"></i>No puedo el dia de hoy<br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                                <div class="card card-body">
+                                    <a class="redondo seguir" href="/links/enCamino/{{id}}">
+                                        <i class="fas fa-users"></i>
+                                    </a><br>
+                                    <a class="redondo seguir" href="/links/enEspera/{{id}}">
+                                        <i class="fas fa-hand-paper"></i>
+                                    </a><br>
+                                    <a class="redondo seguir" href="/links/enMarcha/{{id}}">
+                                        <i class="fa fa-car"></i>
+                                    </a><br>
+                                    <a class="redondo seguir" href="/links/finalRuta/{{id}}">
+                                        <i class="fa fa-route"></i>
+                                    </a><br>
+                                    <a class="redondo seguir" href="/links/indisponibilidad/{{id}}">
+                                        <i class="fas fa-times-circle"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <a href="/links/pasajeros/{{id}}"
+                        class="btn blue darken-4 text-white col-sm-12 seguir">Pasajeros</a>
+                </div>
+            </div>
+            {{else}}
+            <div class="row">
+                <div class="card">
+                    <div class="card-body grey darken-2 text-white text-center">
+                        No tienes rutas creadas
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="botons">
+        <div class="fixed-action-btn  toolbar">
+            <a class="btn-floating btn-large black">
+                <i class="large fa fa-plus"></i>
+            </a>
+            <ul>
+                <li><a class="btn-floating seguir" href="/profile"><i class="fas fa-arrow-left"></i></a></li>
+                <li><a class="btn-floating seguir" href="/links/profiles"><i class="fa fa-address-book"></i></a></li>
+                <li><a class="btn-floating seguir" href="/links/routes"><i class="fa fa-route"></i></a></li>
+                <li><a class="btn-floating seguir" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        window.onload = estaodos;
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.fixed-action-btn');
+            var instances = M.FloatingActionButton.init(elems, {
+                toolbarEnabled: true
+            });
+        });
+        function estaodos() {
+            var pago = document.getElementById("pago").value;
+            var btnP = document.getElementById("btnPagar");
+            if (pago != '') {
+                btnP.style.backgroundColor = 'red';
+            }
+        }
+        $('.seguir').on("click", function () {
+            document.getElementById("loader").style.display = "block";
+        });
+    </script>

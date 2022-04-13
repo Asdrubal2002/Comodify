@@ -1,0 +1,106 @@
+<div class="spinner" id="loader"></div>
+<div class="container p-4">
+    <div class="row">
+        {{#each datesPassager}}
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="../img/pass1.jpg">
+                        <span class="card-title">{{nombre}}</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light blue darken-4 seguir"
+                            href="/links/editProfilePassager/{{id}}"><i class="fas fa-pencil-alt"></i></a>
+                    </div>
+                    <div class="card-content">
+                        <p>Vive en  {{municipio}} - {{departamento}}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <a href="/links/solicitudesPas/{{id}}" class="btn btn-warning blue darken-4 seguir">Solicitudes</a><br><br>
+        <div class="row">
+        </div>
+        <button type="button" class="btn red darken-2" data-toggle="modal" data-target="#exampleModal">
+            Condiciones
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Pasajero</h5>
+                    </div>
+                    <div class="modal-body">
+                        <ol>
+                            <li>El día de tu ruta debes estar atento a su estado para que te informes y puedas usarla
+                                correctamente.</li>
+                            <li>Debes ser responsable con el horario de la ruta y respetuoso con los acompañantes que
+                                viajaran contigo.</li>
+                        </ol>
+                        <br>
+                        Puedes calificar el comportamiento del responsable de la ruta, y el conductor también te puede
+                        calificar tu comportamiento.
+                        <br>
+                        Hay un limite de oportunidades para que mejores tu comportamiento si han existido casos de
+                        intolerancia de parte tuya.
+                        quedaras multado dentro del sistema se te eliminaran todas las rutas que tengas y no podras
+                        usar el servicio.
+                        <br>
+                        Ten en cuenta que tu comportamiento lo observan los conductores antes de aceptarte en su viaje.
+                         <br>
+                        O si tienes buen comportamiento y no te acepta significa que su ruta esta llena y no te puede aceptar
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn  red darken-2" data-dismiss="modal">Entendido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="../img/background.jpg">
+                        <span class="card-title">Pasajero</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light blue darken-4 seguir"
+                            href="createProfilePassager"><i class="fa fa-address-book"></i></a>
+                    </div>
+                    <div class="card-content">
+                         <p>No tienes perfil de pasajero para usar rutas compartidas. <br>Presiona el botón <i
+                                class="fa fa-address-book"></i> para crearlo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+<div class="botons">
+    <div class="fixed-action-btn toolbar">
+        <a class="btn-floating btn-large black">
+            <i class="large fa fa-plus"></i>
+        </a>
+        <ul>
+            <li><a class="btn-floating seguir" href="/profile"><i class="fas fa-arrow-left"></i></a></li>
+            <li><a class="btn-floating seguir" href="/links/profiles"><i class="fa fa-address-book"></i></a></li>
+            <li><a class="btn-floating seguir" href="/links/routes"><i class="fa fa-route"></i></a></li>
+            <li><a class="btn-floating seguir" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, {
+            toolbarEnabled: true
+        });
+    });
+    $('.seguir').on("click", function () {
+        document.getElementById("loader").style.display = "block";
+    });
+
+</script>

@@ -1,0 +1,56 @@
+<div class="p-4">
+    <a href="/links/admin" class="text-white"><button type="button" class="btn red accent-4"><i
+                class="fas fa-arrow-left"></i></button></a>
+</div>
+<div class="m-2 p-2">
+    <table id="example" class="display">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>precio Pagar</th>
+                <th>Link Cobro</th>
+                <th>Ocupación</th>
+                <th>Ultima Actualización</th>
+                <th>Denunciar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each deudores}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{precioPagar}}</td>
+                <td>{{linkCobro}}</td>
+                <td>{{ocupacion}}</td>
+                <td>{{fechaCreacion}}</td>
+                <td>
+                     <form action="/links/enviarLiquidacionNueva/{{id}}" class="ActionForm">
+                        <button type="submit" class="btn  red darken-3">Inhabilitar</button>
+                    </form> 
+            </tr>
+            {{else}}
+            <h4>No hay deudores</h4>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $('.ActionForm').submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Confirmación',
+            text: "¿Desabilitar su ruta?",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#c51162',
+            cancelButtonText: 'No, Eliminar',
+            confirmButtonText: 'Si, Eliminar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+    });
+</script>

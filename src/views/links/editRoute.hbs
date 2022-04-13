@@ -1,0 +1,234 @@
+<script language="JavaScript">
+    window.history.replaceState({}, '', 'EdiRouteDriverConnectionSuccess');
+</script>
+<div class="spinner" id="loader"></div>
+<div class="container p-2">
+    <form action="/links/editRouteCreated/{{datosRuta.id}}" method="POST" onsubmit="return validar()">
+        <h5>Edita tu ruta</h5>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="dias">Días</label>
+                <input type="text" class="form-control" id="dias" name="dias" placeholder="Días disponibles"
+                    value="{{datosRuta.dias}}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="hora">Hora</label>
+                <input type="text" class="form-control" id="hora" name="hora" placeholder="Hora de salida"
+                    value="{{datosRuta.hora}}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fechaInicial">Fecha Inicial que inicia la ruta</label>
+                <input type="date" class="form-control" id="fechaInicial" name="fechaInicial"
+                    value="{{datosRuta.fechaInicial}}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="asientos">Asientos</label>
+                <select id="asientos" name="asientos" class="form-control">
+                    <option value="{{datosRuta.asientos}}" selected>{{datosRuta.asientos}}</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="lugarInicial">Lugar donde empieza la ruta</label>
+                <input type="text" class="form-control" id="lugarInicial" name="lugarInicial"
+                    placeholder="Ejemplo: Parque de aranjuez" value="{{datosRuta.lugarInicial}}">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="localidad">Localidad</label>
+                <input type="text" class="form-control" id="localidad" name="localidad"
+                    placeholder="Barrio de donde sale" value="{{datosRuta.localidad}}">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="lugarFinal">Lugar final</label>
+                <input type="text" class="form-control" id="lugarFinal" name="lugarFinal"
+                    placeholder="Barrio de donde termina la ruta" value="{{datosRuta.lugarFinal}}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="comentario">Especificaciones</label>
+                <textarea type="text" class="form-control" id="comentario" name="comentario"
+                    placeholder="Donde te parqueas para esperar a tus pasajeros, caracteristicas del auto."
+                    value="{{datosRuta.comentario}}" rows="3">{{datosRuta.comentario}}</textarea>
+            </div>
+
+        </div>
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <button class="btn  btn-lg" type="button" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="true" aria-controls="collapseOne">Primera parada</button>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                        data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="form-group col-md-12">
+                                <label for="parada1">Destino 1</label>
+                                <input type="text" class="form-control" id="parada1" name="parada1"
+                                    placeholder="primer lugar al pasar" value="{{datosRuta.parada1}}">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="precioParada1">Precio</label>
+                                <input type="number" class="form-control precios" id="precioParada1"
+                                    name="precioParada1" placeholder="2.500" value="{{datosRuta.precioParada1}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <button class="btn btn-primary btn-lg" type="button" data-toggle="collapse"
+                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Segunda
+                        Parada</button>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="form-group col-md-12">
+                                <label for="parada2">Destino 2</label>
+                                <input type="text" class="form-control" id="parada2" name="parada2"
+                                    placeholder="Segundo lugar al pasar" value="{{datosRuta.parada2}}">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="precioParada2">Precio</label>
+                                <input type="number" class="form-control precios" id="precioParada2"
+                                    name="precioParada2" placeholder="2.500" value="{{datosRuta.precioParada2}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <button class="btn btn-primary btn-lg" type="button" data-toggle="collapse"
+                        data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Tercer
+                        Parada</button>
+
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                        data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="form-group col-md-12">
+                                <label for="parada3">Destino 3</label>
+                                <input type="text" class="form-control" id="parada3" name="parada3"
+                                    placeholder="Tercer lugar al pasar" value="{{datosRuta.parada3}}">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="precioParada3">Precio</label>
+                                <input type="number" class="form-control precios" id="precioParada3"
+                                    name="precioParada3" placeholder="2.500" value="{{datosRuta.precioParada3}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <button class="btn btn-primary btn-lg" type="button" data-toggle="collapse"
+                        data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Cuarta
+                        Parada</button>
+
+                    <div id="collapseFour" class="collapse" aria-labelledby="collapseFour"
+                        data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="form-group col-md-12">
+                                <label for="parada4">Destino 4</label>
+                                <input type="text" class="form-control" id="parada4" name="parada4"
+                                    placeholder="Cuarto lugar al pasar" value="{{datosRuta.parada4}}">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="precioParada4">Precio</label>
+                                <input type="number" class="form-control precios" id="precioParada4"
+                                    name="precioParada4" placeholder="2.500" value="{{datosRuta.precioParada4}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <button type="submit" class="btn btn-primary blue-grey darken-3">Editar Ruta</button>
+    </form>
+    <br>
+    <form action="/links/deleteRoute/{{datosRuta.id}}" class="formDelte p-6">
+        <button type="submit" class="btn red darken-3">Eliminar Ruta</button>
+    </form>
+</div>
+<br>
+<div class="botons">
+    <div class="fixed-action-btn toolbar">
+        <a class="btn-floating btn-large black">
+            <i class="large fa fa-plus"></i>
+        </a>
+        <ul>
+            <li><a class="btn-floating seguir" href="javascript: history.go(-1)"><i class="fas fa-arrow-left"></i></a>
+            </li>
+            <li><a class="btn-floating seguir" href="/links/profiles"><i class="fa fa-address-book"></i></a></li>
+            <li><a class="btn-floating seguir" href="/links/routes"><i class="fa fa-route"></i></a></li>
+            <li><a class="btn-floating seguir" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, {
+            toolbarEnabled: true
+        });
+    });
+    $('.precios').on('input', function () {
+        this.value = this.value.replace(/[^0-9,]/g, '').replace(/,/g, '.');
+    });
+    $('.formDelte').submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: '¿En serio?',
+            text: "Eliminarás tu ruta definitivamente",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Si, Eliminar!',
+            cancelButtonText: 'No, Eliminar!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+                document.getElementById("loader").style.display = "block";
+            }
+        })
+    });
+    function validar() {
+        //Aca aprendes. 
+        var dias, hora, asientos, lugarInicial, localidad, lugarFinal, fechaInicial,
+            comentario, parada1, precioParada1,
+
+            dias = document.getElementById("dias").value;
+        hora = document.getElementById("hora").value;
+        asientos = document.getElementById("asientos").value;
+        lugarInicial = document.getElementById("lugarInicial").value;
+        localidad = document.getElementById("localidad").value;
+        lugarFinal = document.getElementById("lugarFinal").value;
+        fechaInicial = document.getElementById("fechaInicial").value;
+        comentario = document.getElementById("comentario").value;
+        parada1 = document.getElementById("parada1").value;
+        precioParada1 = document.getElementById("precioParada1").value;
+
+        parada2 = document.getElementById("parada2").value;
+        precioParada2 = document.getElementById("precioParada2").value;
+        parada3 = document.getElementById("parada3").value;
+        precioParada3 = document.getElementById("precioParada3").value;
+        parada4 = document.getElementById("parada4").value;
+        precioParada4 = document.getElementById("precioParada4").value;
+
+        if (dias === "" || hora === "" || asientos === "" || lugarInicial === "" || localidad === "" || lugarFinal === "" ||
+            fechaInicial === "" || comentario === "" || parada1 === "" || precioParada1 === "" || parada2 === "" || precioParada2 === "" || parada3 === "" || precioParada3 === "" || parada4 === "" || precioParada4 === "") {
+            swal.fire({
+                title: "FALTAN",
+                text: "DATOS POR LLENAR",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        } else {
+            document.getElementById("loader").style.display = "block";
+        }
+    }
+    $('.seguir').on("click", function () {
+        document.getElementById("loader").style.display = "block";
+    });
+</script>

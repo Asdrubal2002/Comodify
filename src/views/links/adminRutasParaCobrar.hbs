@@ -1,0 +1,31 @@
+<div class="p-4">
+  <a href="/links/admin" class="text-white"><button type="button" class="btn red accent-4"><i
+                class="fas fa-arrow-left"></i></button></a>
+</div>
+<div class="m-2 p-2">
+    <table id="example" class="display">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>fecha Inicial</th>
+                <th>ocupación</th>
+                <th>precio</th>
+                <th>cobro</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each rutasCobro}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{fechaInicial}}</td>
+                <td>{{ocupacion}}</td>
+                <td>{{precioPagar}}</td>
+                <td><a href="/links/cobrarLink/{{id}}" class="text-white"><button type="button" class="btn light-green darken-4">Cobrar</button></a></td>
+            </tr>
+            {{else}}
+            <h4>No hay rutas para cobrar</h4>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>

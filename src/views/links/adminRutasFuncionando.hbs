@@ -1,0 +1,35 @@
+<div class="p-4">
+  <a href="/links/admin" class="text-white"><button type="button" class="btn red accent-4"><i
+                class="fas fa-arrow-left"></i></button></a>
+</div>
+<div class="m-2 p-2">
+    <table id="example" class="display">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>id Ruta</th>
+                <th>id Pasajero</th>
+                <th>parada</th>
+                <th>precio</th>
+                <th>Comentario</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each viajes}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{idRuta}}</td>
+                <td>{{idPasajero}}</td>
+                <td>{{parada}}</td>
+                <td>{{precio}}</td>
+                <td>{{comentario}}</td>
+                <td>{{acciones}}</td>
+            </tr>
+            {{else}}
+            <h4>No hay rutas funcionando</h4>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>

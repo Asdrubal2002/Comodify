@@ -1,0 +1,60 @@
+<div class="jumbotron">
+    <h6 class="display-4">Ruta: {{liquidar.id}}</h6>
+    <p class="lead">Esta ruta va desde {{liquidar.lugarInicial}} - {{liquidar.lugarFinal}}</p>
+    <p>La referencia de esta ruta es la {{liquidar.fechaCreacion}}</p>
+    <hr class="my-4">
+    <p>Liquidar el link de cobro de la siguiente entrada</p>
+    <form action="/links/enviarLiquidacion/{{liquidar.id}}" method="POST" class="ActionForm">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Link cobro PayU</label>
+            <input type="text" class="form-control" id="linkCobro" name="linkCobro" aria-describedby="emailHelp"
+                placeholder="paga aqui el link" value="{{liquidar.linkCobro}}">
+
+            <label for="exampleInputEmail1">Precio Pagar en deuda</label>
+            <input type="text" class="form-control" id="precioPagar" name="precioPagar" aria-describedby="emailHelp"
+                placeholder="paga aqui el link" value="{{liquidar.precioPagar}}">
+
+            <label for="exampleInputEmail1">Disponibilidad</label>
+            <select class="form-control form-control-lg" name="ocupacion" id="ocupacion">
+                <option>Disponible</option>
+                <option>Detenida</option>
+                <option>Adeudada</option>
+            </select>
+            <small id="emailHelp" class="form-text text-muted">Obligatorio cobrar ruta</small>
+        </div>
+        <button type="submit" class="btn red darken-3">Liquidar</button>
+    </form>
+</div>
+
+<script>
+    $('.ActionForm').submit(function (e) {
+        e.preventDefault();
+        var precio = document.getElementById("precioPagar").value;
+        console.log(precio)
+        if(precio === ""){
+            swal.fire({
+                title: "FALTAN",
+                text: "EN PRECIO ESCRIBE 0",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        }else {
+            Swal.fire({
+                title: 'Confirmación',
+                text: "¿De verdad quieres liquidar esta ruta?",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#c51162',
+                cancelButtonText: 'No, liquidar',
+                confirmButtonText: 'Si, liquidar',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+        }
+
+    });
+</script>

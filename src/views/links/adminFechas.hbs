@@ -1,0 +1,35 @@
+<div class="p-4">
+  <a href="/links/admin" class="text-white"><button type="button" class="btn red accent-4"><i
+                class="fas fa-arrow-left"></i></button></a>
+</div>
+<div class="m-2 p-2">
+    <table id="example" class="display">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Fecha Inicio ruta</th>
+                <th>Dias Disponibles</th>
+                 <th>Ocupación</th>
+                <th>Fecha actualizada</th>
+                <th>Pago</th>
+                <th>Gestión</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each fechas}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{fechaInicial}}</td>
+                <td>{{dias}}</td>
+                <td>{{ocupacion}}</td>
+                <td>{{fechaCreacion}}</td>
+                <td>{{precioPagar}}</td>
+                <td><button type="button" class="btn light-green darken-4"><a href="/links/rutaInictiva/{{id}}" class="text-white">Gestion</a></button></td>
+            </tr>
+            {{else}}
+            <h4>No hay ruta</h4>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>

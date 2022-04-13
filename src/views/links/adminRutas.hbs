@@ -1,0 +1,91 @@
+<div class="p-4">
+  <a href="/links/admin" class="text-white"><button type="button" class="btn red accent-4"><i
+                class="fas fa-arrow-left"></i></button></a>
+</div>
+<div class="m-2 p-2">
+    <table id="example" class="display">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>id Conductor</th>
+                <th>dias</th>
+                <th>hora</th>
+                <th>Asientos</th>
+                <th>lugar Inicial</th>
+                <th>Localidad</th>
+                <th>modelo</th>
+                <th>Lugar Final</th>
+                <th>Comentario</th>
+                <th>Parada N1</th>
+                <th>precio Parada n1</th>
+                <th>Parada N2</th>
+                <th>precio Parada n2</th>
+                <th>Parada N3</th>
+                <th>precio Parada n3</th>
+                <th>Parada N4</th>
+                <th>precio Parada n4</th>
+                <th>fecha en que empieza la ruta</th>
+                <th>Ocupación</th>
+                <th>precio pagar</th>
+                <th>Ponderado Conductor</th>
+                <th>Gestión</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each rutas}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{idConductor}}</td>
+                <td>{{dias}}</td>
+                <td>{{hora}}</td>
+                <td>{{asientos}}</td>
+                <td>{{lugarInicial}}</td>
+                <td>{{localidad}}</td>
+                <td>{{modelo}}</td>
+                <td>{{lugarFinal}}</td>
+                <td>{{comentario}}</td>
+                <td>{{parada1}}</td>
+                <td>{{precioParada1}}</td>
+                <td>{{parada2}}</td>
+                <td>{{precioParada2}}</td>
+                <td>{{parada3}}</td>
+                <td>{{precioParada3}}</td>
+                <td>{{parada4}}</td>
+                <td>{{precioParada4}}</td>
+                <td>{{fechaInicial}}</td>
+                <td>{{ocupacion}}</td>
+                <td>{{precioPagar}}</td>
+                <td>{{ponderado}}</td>
+                <td>
+                     <form action="/links/deleteRuta/{{id}}" class="ActionForm">
+                        <button type="submit" class="btn  red darken-3"><i class="fa fa-trash"
+                                aria-hidden="true"></i></button>
+                    </form>
+            </tr>
+            {{else}}
+            <h4>No hay rutas registradas</h4>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $('.ActionForm').submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Confirmación',
+            text: "¿De verdad quieres eliminar esta ruta?",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#c51162',
+            cancelButtonText: 'No, Eliminar',
+            confirmButtonText: 'Si, Eliminar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+    });
+</script>

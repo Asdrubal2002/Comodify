@@ -1,0 +1,36 @@
+<div class="p-4">
+  <a href="/links/admin" class="text-white"><button type="button" class="btn red accent-4"><i
+                class="fas fa-arrow-left"></i></button></a>
+</div>
+<div class="m-2 p-2">
+    <table id="example" class="display">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>idConductor</th>
+                <th>precio Pagar</th>
+                <th>ocupación</th>
+                <th>Inicia</th>
+                <th>Finaliza</th>
+                <th>Liquidar</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {{#each rutasliquidadas}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{idConductor}}</td>
+                <td>{{precioPagar}}</td>
+                <td>{{ocupacion}}</td>
+                <td>{{localidad}}</td>
+                <td>{{lugarFinal}}</td>
+                <td><a href="/links/liquidarLink/{{id}}" class="text-white"><button type="button" class="btn light-green darken-4">Liquidar</button></a></td>
+            </tr>
+            {{else}}
+            <h4>No hay rutas para cobrar</h4>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>

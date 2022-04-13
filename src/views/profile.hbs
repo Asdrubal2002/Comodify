@@ -1,0 +1,100 @@
+<div class="spinner" id="loader"></div>
+<div class="ventanas">
+    <section class="portafolio">
+        <div class="contenedorP">
+            <div class="contenedor2">
+                <div class="box">
+                    <div class="container-4">
+                        <form action="/links/busqueRutas" method="POST">
+                            <input type="text" id="search" name="search"
+                                placeholder="Busca tu barrio: belen san bernardo" />
+                            <button type="submit" class="icon seguir"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="contenedorP sobre-nosotros">
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="../img/conductor.jpg">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">Conductor<i
+                        class="material-icons right fas fa-ellipsis-v"></i></span>
+                <p><a href="links/datesProfileDriver" class="seguir">Crear Perfil</a></p>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">Conductor<i class="material-icons right"><i
+                            class="fa fa-times" aria-hidden="true"></i></i></span>
+                <p>Obtienes ganancias con el servicio que prestarías a las personas, ya que nosotros solo obtenemos el
+                    10%
+                    de lo que tú recoges en cada ruta. Eso te ayudaría a ti con gastos del vehículo o de la motocicleta.
+                    debes tener LICENCIA, SOAT, ANTECEDENTES, FOTO VEHICULO.
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="../img/pasajeros.jpg">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">Pasajero<i
+                        class="material-icons right fas fa-ellipsis-v"></i></span>
+                <p><a href="links/datesProfilePassager" class="seguir">Crear perfil</a></p>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">Pasajero<i class="material-icons right"><i
+                            class="fa fa-times" aria-hidden="true"></i></i></span>
+                <p>Los usuarios en movilidad mas felices son los pasajeros de automóviles y luego los conductores de
+                    automóviles. Los que viajan en autobús y tren experimentan las emociones más negativas.</p>
+            </div>
+        </div>
+    </section>
+</div>
+<section class="portafolioCedulas">
+    <div class="contenedorP">
+        <div class="contenedor2">
+            <div class="box">
+                <div class="container-4">
+                    <form action="/links/bCedula" method="POST">
+                        <input type="text" id="search" name="search"
+                            placeholder="Digita tu número de identificación, el que registraste en el formulario de creación del perfil." />
+                        <button type="submit" class="icon seguir"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="img app">
+    <img src="../img/cambios.png" alt="Descripción de la imagen" height="400" width="600">
+</div>
+
+<div class="botons">
+    <div class="fixed-action-btn  toolbar">
+        <a class="btn-floating btn-large black">
+            <i class="large fa fa-plus"></i>
+        </a>
+        <ul>
+            <li><a class="btn-floating"><i class="fa fa-car"></i></a></li>
+            <li><a class="btn-floating seguir" href="links/profiles"><i class="fa fa-address-book"></i></a></li>
+            <li><a class="btn-floating seguir" href="links/routes"><i class="fa fa-route"></i></a></li>
+            <li><a class="btn-floating seguir" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, {
+            toolbarEnabled: true
+        });
+    });
+
+    $('.seguir').on("click", function () {
+        document.getElementById("loader").style.display = "block";
+    });
+</script>

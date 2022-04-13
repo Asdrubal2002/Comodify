@@ -1,0 +1,34 @@
+<div class="jumbotron">
+    <h1 class="display-4">Ruta: {{cobro.id}}</h1>
+    <p class="lead">Esta ruta va desde {{cobro.lugarInicial}} - {{cobro.lugarFinal}}</p>
+    <p>La referencia de esta ruta es la {{cobro.fechaCreacion}}</p>
+    <hr class="my-4">
+    <p>pegar el link de cobro en la siguiente entrada</p>
+    <form action="/links/enviarCobro/{{cobro.id}}" method="POST" onsubmit="return validar()">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Link cobro PayU</label>
+            <input type="text" class="form-control" id="linkCobro" name="linkCobro" aria-describedby="emailHelp"
+                placeholder="paga aqui el link">
+            <small id="emailHelp" class="form-text text-muted">Obligatorio cobrar ruta</small>
+        </div>
+        <button type="submit" class="btn red darken-3">Cobrar</button>
+    </form>
+</div>
+
+<script>
+    function validar() {
+        //Aca aprendes. 
+        var cobro = document.getElementById("linkCobro").value;
+
+        if (cobro === "") {
+            swal.fire({
+                title: "FALTAN",
+                text: "Pega el link de cobro",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        }
+    }
+
+</script>

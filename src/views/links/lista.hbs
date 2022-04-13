@@ -1,0 +1,70 @@
+<div class="spinner" id="loader"></div>
+<section class="portafolio">
+    <div class="contenedorP">
+        <div class="contenedor2">
+            <div class="box">
+                <div class="container-4">
+                    <form action="/links/busqueRutas" method="POST">
+                        <input type="text" id="search" name="search" placeholder="Busca tu barrio: belen san bernardo" />
+                        <button type="submit" class="icon seguir"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container p-2">
+    <div class="row my-flex-card">
+        {{#each rutas}}
+        <div class="col-lg-4 col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    {{localidad}}-{{lugarFinal}}<br>
+                    {{hora}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{lugarInicial}}</h5>
+                    <p class="card-text">parada 1: {{parada1}} - {{precioParada1}}</p>
+                    <p class="card-text">parada 2: {{parada2}} - {{precioParada2}}</p>
+                    <p class="card-text">parada 3: {{parada3}} - {{precioParada3}}</p>
+                    <p class="card-text">parada 4: {{parada4}} - {{precioParada4}}</p>
+                    <a href="/links/addViaje/{{id}}" class="btn light-blue darken-4 seguir">Viajar</a>
+                </div>
+            </div>
+        </div>
+
+        {{else}}
+        <div class="row">
+            <div class="card">
+                <div class="card-body grey darken-2 text-white text-center">
+                    No hay rutas disponibles, busca otros lugares cercanos
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+<div class="botons">
+    <div class="fixed-action-btn toolbar">
+        <a class="btn-floating btn-large black">
+            <i class="large fa fa-plus"></i>
+        </a>
+        <ul>
+            <li><a class="btn-floating seguir" href="/profile"><i class="fas fa-arrow-left"></i></a></li>
+            <li><a class="btn-floating seguir" href="/links/profiles"><i class="fa fa-address-book"></i></a></li>
+            <li><a class="btn-floating seguir" href="/links/routes"><i class="fa fa-route"></i></a></li>
+            <li><a class="btn-floating seguir" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, {
+            toolbarEnabled: true
+        });
+    });
+    $('.seguir').on("click", function () {
+        document.getElementById("loader").style.display = "block";
+    });
+</script>

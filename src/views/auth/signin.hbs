@@ -1,0 +1,68 @@
+<div class='spinner' id="loader"></div>
+<div class="containerBoton">
+  <input type="checkbox" id="btn-mas">
+  <div class="btn-mas">
+    <a id="ir" for="btn-mas" class="fas fa-arrow-left" href="/"></a>
+  </div>
+</div>
+<div class="container p-4">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="card text-center">
+        <div class="card-header">
+          <h3>Ingresar</h3>
+        </div>
+        <div class="card-body">
+          <form action="/signin" method="POST" onsubmit="return empieza();">
+            <div class="form-group">
+              <input type="type" id="usuario" name="username" placeholder="Nombre Usuario" class="form-control textos"
+                autofocus>
+            </div>
+            <div class="form-group">
+               <div class="campo">
+                <input type="password" id="clave" name="pass" placeholder="Clave" class="form-control textos">
+                <span>Mostrar</span>
+              </div>
+            </div>
+            <a class="textos lik" href="/signup">No tengo cuenta</a>
+            <a class="textos lik" href="/recover">Olvide mi contraseña</a>
+            <a class="textos lik" href="/change">Cambiar contraseña</a>
+            <button class="btn btn-block textos btn-lg" id="carga">
+              Ingresar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.querySelector('.campo span').addEventListener('click', e => {
+    const passwordInput = document.querySelector('#clave');
+    if (e.target.classList.contains('show')) {
+      e.target.classList.remove('show');
+      e.target.textContent = 'Ocultar';
+      passwordInput.type = 'text';
+    } else {
+      e.target.classList.add('show');
+      e.target.textContent = 'Mostrar';
+      passwordInput.type = 'password';
+    }
+  });
+  function empieza() {
+    var usuario, clave, correo, expresion;
+    usuario = document.getElementById("usuario").value;
+    clave = document.getElementById("clave").value;
+    if (usuario === "" || clave === "") {
+      swal.fire({
+        title: "Error",
+        text: "Todos los campos son obligatorios",
+        timer: 3000,
+        showConfirmButton: false
+      });
+      return false;
+    } else {
+        document.getElementById("loader").style.display = "block";
+    }
+  }
+</script>

@@ -1,0 +1,53 @@
+<div class="p-4">
+    <a href="/links/admin" class="text-white"><button type="button" class="btn red accent-4"><i
+                class="fas fa-arrow-left"></i></button></a>
+</div>
+<div class="m-3 p-2">
+    <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>id Usuario</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>identificación</th>
+                <th>Celular</th>
+                <th>Departamento</th>
+                <th>Municipio</th>
+                <th>Placa</th>
+                <th>Modelo</th>
+                <th>Respo</th>
+                <th>Dispo</th>
+                <th>votantes</th>
+                <th>Gestionar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each conductores}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{idUser}}</td>
+                <td>{{nombre}}</td>
+                <td>{{apellido}}</td>
+                <td>{{edad}}</td>
+                <td>{{identificacion}}</td>
+                <td>{{celular}}</td>
+                <td>{{departamento}}</td>
+                <td>{{municipio}}</td>
+                <td>{{placa}}</td>
+                <td>{{modelo}}</td>
+                <td>{{responsabilidad}}</td>
+                <td>{{disponible}}</td>
+                <td>{{votantes}}</td>
+                <td><a href="/links/disponibilidad/{{id}}" class="text-white"><button type="button"
+                            class="btn  red darken-3"><i class="fa fa-book" aria-hidden="true"></i></button></a></td>
+
+            </tr>
+            {{else}}
+            <h4>No hay pasajeros registrados</h4>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>

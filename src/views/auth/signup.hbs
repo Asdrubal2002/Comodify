@@ -1,0 +1,187 @@
+<div class='spinner' id="loader"></div>
+<div class="containerBoton">
+  <input type="checkbox" id="btn-mas">
+  <div class="btn-mas">
+    <a id="ir" for="btn-mas" class="fas fa-arrow-left" href="/signin"></a>
+  </div>
+</div>
+<div class="container p-4">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="card text-center">
+        <div class="card-header">
+          <h4>Registrarse</h4>
+        </div>
+        <div class="card-body">
+          <form action="/signup" method="POST" onsubmit="return empieza();">
+            <div class="form-group">
+              <input type="type" id="usuario" name="username" placeholder="Nombre Usuario" class="form-control textos"
+                autofocus>
+            </div>
+            <div class="form-group">
+              <input type="email" id="correo" name="email" placeholder="Email" class="form-control textos">
+            </div>
+            <div class="form-group">
+              <div class="campo">
+                <input type="password" id="clave" name="pass" placeholder="Clave" class="form-control textos">
+                <span>Mostrar</span>
+              </div>
+            </div>
+            <div class="input-container cta">
+              <label class="checkbox-container textos">
+                <input type="checkbox" name="test" id="test">
+                <span class="checkmark"></span>
+                ¿Aceptas Términos y condiciones?
+              </label>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-block textos btn-lg">
+                Registrarme
+              </button>
+            </div>
+          </form>
+        </div>
+       
+      </div>
+       <div class="card text-center">
+          <a href="" data-toggle="modal" data-target=".bd-example-modal-lg">Términos y Condiciones</a>
+        </div>
+    </div>
+
+  </div>
+</div>
+<!-- Modal Terminos y condiciones -->
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #1a4d99;color:#fff;">
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                        Términos y Condiciones</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="x" style="color:#fff;">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="terminos">Esta aplicación es propiedad y está operando por Comodify. Estos Términos
+                        establecen los
+                        términos y condiciones bajo los cuales el usuario puede usar nuestra aplicación y servicios
+                        ofrecidos
+                        por Comodify.
+                        El aplicativo de Comodify ofrece a los usuarios crear, buscar y utilizar rutas
+                        compartidas con datos personales para ofrecer seguridad en los viajes,
+                        al acceder y usar al aplicativo de nuestro servicio
+                        usted aprueba
+                        que haya leído, entendido y aceptado estar sujeto a estos Términos:</p>
+                    <p class="terminos"><strong>¿Cuáles son los requisitos para crear una cuenta?</strong></p>
+                    <p class="terminos">Para usar nuestra aplicación o página web y / o recibir nuestros servicios,
+                        debes tener al
+                        menos [18] años de edad, o estar acompañado de alguien con la mayoría de edad legal, para
+                        participar en estos Términos como un acuerdo vinculante.</p>
+                    <p class="terminos"><strong>Derecho a suspender o cancelar la cuenta de usuario</strong></p>
+                    <p class="terminos">Puedes discontinuar el uso y solicitar cancelar tu cuenta y / o cualquier
+                        servicio en cualquier momento desde que estés al día con tus bonificaciones a Comodify si eres conductor.</p>
+                    <p class="terminos"><strong>Limitación de responsabilidad</strong></p>
+                    <p class="terminos">En la máxima medida permitida por la ley aplicable, en ningún caso Comodify será
+                        responsable por daños indirectos, punitivos, incidentales, especiales, consecuentes o
+                        ejemplares,
+                        incluidos, entre otros, daños por pérdida de beneficios, uso, datos. U otras
+                        pérdidas intangibles, que surjan de o estén relacionadas con el uso o la imposibilidad de
+                        utilizar el
+                        servicio.</p>
+                    <p class="terminos"><strong>Emails de información y noticias</strong></p>
+                    <p class="terminos">Acepta recibir de vez en cuando nuestros mensajes y materiales de información,
+                        por correo
+                        electrónico o cualquier otro formulario de contacto que nos proporciones (incluido tu número de
+                        teléfono
+                        para llamadas o mensajes de texto).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+  document.querySelector('.campo span').addEventListener('click', e => {
+    const passwordInput = document.querySelector('#clave');
+    if (e.target.classList.contains('show')) {
+      e.target.classList.remove('show');
+      e.target.textContent = 'Ocultar';
+      passwordInput.type = 'text';
+    } else {
+      e.target.classList.add('show');
+      e.target.textContent = 'Mostrar';
+      passwordInput.type = 'password';
+    }
+  });
+  function empieza() {
+    var usuario, clave, correo, expresion;
+    usuario = document.getElementById("usuario").value;
+    clave = document.getElementById("clave").value;
+    correo = document.getElementById("correo").value;
+
+    var isChecked = document.getElementById('test').checked;
+
+    expresion = /\w+@\w+\.+[a-z]/;
+
+    if (usuario === "" || clave === "" || correo === "") {
+      swal.fire({
+        title: "Error",
+        text: "Todos los campos son obligatorios",
+        timer: 3000,
+        showConfirmButton: false
+      });
+      return false;
+    }
+    else if (usuario.length > 12 || usuario.length < 5) {
+      swal.fire({
+        title: "Error",
+        text: 'El usuario no puede ser mayor a 12 ni menor a 5',
+        timer: 3000,
+        showConfirmButton: false
+
+      })
+      return false;
+    }
+    else if (clave.length > 10 || clave.length < 4) {
+      swal.fire({
+        title: "Error",
+        text: 'La clave no es valida, debe de estar entre 4 y 10',
+        timer: 3000,
+        showConfirmButton: false
+      })
+      return false;
+
+    }
+    else if (correo.length > 100 || correo.length < 11) {
+      swal.fire({
+        title: "Error",
+        text: 'El correo no es valido',
+        timer: 3000,
+        showConfirmButton: false
+      })
+
+      return false;
+    }
+    else if (!expresion.test(correo)) {
+      swal.fire({
+        title: "Error",
+        text: 'Escribe bien el correo',
+        timer: 3000,
+        showConfirmButton: false
+      })
+      return false;
+    }
+    if (!isChecked) {
+      swal.fire({
+        title: "Error",
+        text: 'No Aceptaste Términos y Condiciones',
+        timer: 3000,
+        showConfirmButton: false
+      })
+      return false;
+    }
+    else {
+      document.getElementById("loader").style.display = "block";
+    }
+
+  }
+</script>

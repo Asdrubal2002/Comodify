@@ -1,0 +1,80 @@
+<script language="JavaScript">
+    window.history.replaceState({}, '', 'PassagersConnectionSuccess');
+</script>
+<div class="spinner" id="loader"></div>
+<div class="container p-2">
+    <div class="row my-flex-card">
+        {{#each pasajeros}}
+        <div class="col-lg-4 col-sm-12">
+            <div class="card text-center">
+                <div class="card-header" style="font-size: 3vh;">
+                    {{nombre}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{parada}}</h5>
+                    <p class="datosCards" style="font-size: 2.5vh;">{{precio}}</p>
+                   
+                    {{!-- <form action="/links/reportPasa/{{idPasajero}}" class="formQueja">
+                        <button type="submit" class="btn grey lighten-1">¿Quejas de {{nombre}}?</button>
+                    </form> --}}
+                    <form action="/links/reportPasa/{{idPasajero}}" class="formDelte">
+                        <button type="submit" class="btn red darken-3">bajar del viaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <a href="/links/solicitudes/{{idRuta}}" class="btn text-white col-sm-12 seguir" id="inferior">Más solicitudes
+            para tu ruta</a>
+        {{else}}
+        <div class="row">
+            <div class="card">
+                <div class="card-body grey darken-2 text-white text-center">
+                    No tienes pasajeros en tu ruta, espera que vayan llegando.
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+<div class="botons">
+    <div class="fixed-action-btn  toolbar">
+        <a class="btn-floating btn-large black">
+            <i class="large fa fa-plus"></i>
+        </a>
+        <ul>
+            <li><a class="btn-floating seguir" href="/links/routesCreated"><i class="fas fa-arrow-left"></i></a></li>
+            <li><a class="btn-floating seguir" href="/links/profiles"><i class="fa fa-address-book"></i></a></li>
+            <li><a class="btn-floating seguir" href="/links/routes"><i class="fa fa-route"></i></a></li>
+            <li><a class="btn-floating seguir" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, {
+            toolbarEnabled: true
+        });
+    });
+    $('.formDelte').submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: '¿En serio?',
+            text: "Tendras un pasaje menos",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Si, bajar!',
+            cancelButtonText: 'No, bajar!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+    });
+    $('.seguir').on("click", function () {
+        document.getElementById("loader").style.display = "block";
+    });
+
+</script>

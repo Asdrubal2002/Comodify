@@ -1,0 +1,88 @@
+<div class="spinner" id="loader"></div>
+{{#each identi}}
+<div class="row" id="intro">
+    <div class="col s12 m5">
+        <div class="card-panel blue darken-3">
+            <span class="white-text">
+                <h4>Documentos {{nombre}} {{apellido}}</h4>
+                Debe subir 4 fotos o pantallazos de los siguientes Documentos. Deben nombrarse
+                con el
+                prefijo del nombre del documento seguido de su número de documento de identidad.
+                <br>
+                Ejemplo: Documento + Numero_De_Identificación
+                <br>
+                <br>
+                1- Licencia de conducción --> Licencia{{identificacion}}
+                <br><br>
+                2- Soat --> Soat{{identificacion}}
+                <br><br>
+                3- Antecendentes --> Antecedentes{{identificacion}}
+                <br><br>
+                4- Foto del vehículo que se observe claramente su placa --> Vehiculo{{identificacion}}
+                <br><br>
+                Si haces el registro y tus fotos no tienen las indicaciones anteriormente explicadas, no se le
+                proporcionara permiso
+                de prestar el servicio con Comodify.
+                <br>
+
+                Si no los vas a subir hoy, sal y vuelve a entrar cuando los tengas. <a href="/logout"><button
+                        type="button" class="btn pink darken-3">Salir</button></a>
+                <br>
+                <br>
+                <div align="right">
+                    Si ya tienes tus documentos listos puedes empezar
+                    <a type="button" class="btn blue-grey darken-2" onclick="empezar()">Subir mis documentos</a>
+                </div>
+
+            </span>
+        </div>
+    </div>
+</div>
+<div class="container p-2">
+    <div class="card text-center" id="licenciaF">
+        <div class="card-header">
+           Licencia
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Licencia{{identificacion}}</h5>
+            <form action="/files" method="post" enctype="multipart/form-data" onsubmit="return validarLi()">
+                <input type="file" name="licencia" id="licencia" accept="image/png,image/jpeg"><br><br>
+                <input type="submit" value="Subir" class="btn btn-primary btn-lg text-white" id="Blicencia">
+            </form>
+        </div>
+        <div class="card-footer text-muted">
+             <img src="../img/licencia.png" alt="Descripción de la imagen" width="600" height="300">
+        </div>
+    </div>
+    {{else}}
+    <div class="card">
+        <div class="card-body grey darken-2 text-white text-center">
+            No te encuentras registrado dentro de conductores, o ya subiste tus archivos. <a href="/profile">Atras</a><br><br>
+            <a href="/logout">Salir</a>
+        </div>
+    </div>
+    {{/each}}
+</div>
+<script>
+    function empezar() {
+        document.getElementById("intro").style.display = "none";
+        document.getElementById("licenciaF").style.display = "block";
+    }
+
+    function validarLi() {
+        var documents = $("#licencia")[0].files.length;
+        var nombre = $('#licencia').val();
+        if (documents === 0) {
+            swal.fire({
+                title: "Escoge tu Licencia",
+                text: "No tienes ningún archivo seleccionado",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        } else {
+           document.getElementById("loader").style.display = "block";
+        }
+    }
+
+</script>

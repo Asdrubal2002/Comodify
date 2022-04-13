@@ -1,0 +1,35 @@
+<div class="spinner" id="loader"></div>
+<div class="container p-2">
+    <div class="card text-center" id="antecedentesF">
+        <div class="card-header">
+            Antecedentes
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Antecedentes{{identificacion}}</h5>
+            <form action="/antecedentes" method="post" enctype="multipart/form-data" onsubmit="return validarAn()">
+                <input type="file" name="antecedentes" id="antecedentes" accept="image/png,image/jpeg"><br><br>
+                <input type="submit" value="Subir" class="btn btn-primary btn-lg text-white" id="Bantecedentes">
+            </form>
+        </div>
+        <div class="card-footer text-muted">
+             <img src="../img/antecedentes.png" alt="Descripción de la imagen" width="600" height="300">
+        </div>
+    </div>
+
+</div>
+<script>
+    function validarAn() {
+        var documents = $("#antecedentes")[0].files.length;
+        if (documents === 0) {
+            swal.fire({
+                title: "Escoge tus Antecedentes",
+                text: "No tienes ningún archivo seleccionado",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        } else {
+            document.getElementById("loader").style.display = "block";
+        }
+    }
+</script>

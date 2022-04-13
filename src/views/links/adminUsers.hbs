@@ -1,0 +1,53 @@
+<div class="p-4">
+  <a href="/links/admin" class="text-white"><button type="button" class="btn red accent-4"><i
+                class="fas fa-arrow-left"></i></button></a>
+</div>
+<div class="m-3 p-2">
+    <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Nombre usuario</th>
+                <th>Correo Electronico</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{username}}</td>
+                <td>{{email}}</td>
+                <td>
+                    <form action="/links/usersDelete/{{id}}" class="ActionForm">
+                        <button type="submit" class="btn  red darken-3"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </form>
+                </td>
+
+            </tr>
+            {{else}}
+            <h4>No hay usuarios registrados</h4>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>
+<script>
+     $('.ActionForm').submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Confirmación',
+            text: "¿De verdad quieres eliminar el usuario?",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#c51162',
+            cancelButtonText: 'No, Eliminar',
+            confirmButtonText: 'Si, Eliminar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+    });
+</script>

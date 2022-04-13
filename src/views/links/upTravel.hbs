@@ -1,0 +1,137 @@
+<script language="JavaScript">
+    window.history.replaceState({}, '', 'selectedRouteConnectionSuccess15');
+</script>
+<div class="spinner" id="loader"></div>
+<input class="mult" id="mult" value="{{ruta.ponderado}}">
+<input class="SeleccionarPrecios" id="PrecioParada1" value="{{ruta.precioParada1}}">
+<input class="SeleccionarPrecios" id="PrecioParada2" value="{{ruta.precioParada2}}">
+<input class="SeleccionarPrecios" id="PrecioParada3" value="{{ruta.precioParada3}}">
+<input class="SeleccionarPrecios" id="PrecioParada4" value="{{ruta.precioParada4}}">
+
+<input class="SeleccionarPrecios" id="parada1" value="{{ruta.parada1}}">
+<input class="SeleccionarPrecios" id="parada2" value="{{ruta.parada2}}">
+<input class="SeleccionarPrecios" id="parada3" value="{{ruta.parada3}}">
+<input class="SeleccionarPrecios" id="parada4" value="{{ruta.parada4}}">
+
+<section class="addViajeTitulo text-center">
+    <h4>¿Te sirve esta ruta?</h4>
+    <h5>{{ruta.localidad}} - {{ruta.lugarFinal}}</h5>
+    <h6>{{ruta.lugarInicial}}</h6>
+</section>
+<section class="addViaje">
+    <p>Esta ruta tiene servicio los días {{ruta.dias}}, a las {{ruta.hora}}. Empieza el servicio el
+        {{ruta.fechaInicial}} por medio de {{ruta.modelo}}.
+    </p>
+    <form action="/links/addSolicitud/{{ruta.id}}" method="POST" onsubmit="return validar()">
+        <div class="card">
+            <div class="card-header" style="font-size: 4.5vh;">
+                <p style="font-size: 2.2vh; color:rgb(136, 136, 136)">Clasificación del conductor</p>
+                <p id="demo" class="center-block" style="margin-top: 0%;"></p>
+            </div>
+            <div class="card-body">
+                <div class="form-group col-md-8">
+                    <label for="parada">paradas registradas</label>
+                    <select id="parada" name="parada" class="form-control" onchange="seleccionado()">
+                        <option value="" selected>Selecciona...</option>
+                        <option value="{{ruta.parada1}}">{{ruta.parada1}}</option>
+                        <option value="{{ruta.parada2}}">{{ruta.parada2}}</option>
+                        <option value="{{ruta.parada3}}">{{ruta.parada3}}</option>
+                        <option value="{{ruta.parada4}}">{{ruta.parada4}}</option>
+                    </select>
+                </div>
+                <textarea type="text" class="form-control precio" id="precio" name="precio" rows="1" readonly></textarea><br>
+               
+                <button type="submit" class="btn blue darken-3">Me sirve</button>
+            </div>
+        </div>
+    </form>
+</section>
+<div class="botons">
+    <div class="fixed-action-btn toolbar">
+        <a class="btn-floating btn-large black">
+            <i class="large fa fa-plus"></i>
+        </a>
+        <ul>
+            <li><a class="btn-floating seguir" href="javascript: history.go(-1)"><i class="fas fa-arrow-left"></i></a></li>
+            <li><a class="btn-floating seguir" href="/links/profiles"><i class="fa fa-address-book"></i></a></li>
+            <li><a class="btn-floating seguir" href="/links/routes"><i class="fa fa-route"></i></a></li>
+            <li><a class="btn-floating seguir" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, {
+            toolbarEnabled: true
+        });
+    });
+     window.onload = estreella;
+    function estreella() {
+        var start = document.getElementById("mult").value;
+        if(start >= 5 || start == 0){
+             document.getElementById("demo").innerHTML = "★★★★★";
+             document.getElementById("demo").style.color = "#039be5";
+        }
+        else if (start < 5 && start >= 4) {
+           document.getElementById("demo").innerHTML = "★★★★";
+           document.getElementById("demo").style.color = "#7cb342";
+        }
+        else if (start < 4 && start >= 3) {
+            document.getElementById("demo").innerHTML = "★★★";
+            document.getElementById("demo").style.color = "#ffc107";
+        }
+        else if (start < 3 && start >= 2) {
+            document.getElementById("demo").innerHTML = "★★";
+            document.getElementById("demo").style.color = "#e65100";
+        }
+        else if (start < 2 && start >= 1) {
+            document.getElementById("demo").innerHTML = "★";
+            document.getElementById("demo").style.color = "#ff5722";
+        }
+    }
+
+    function seleccionado() {
+        var pr1 = document.getElementById("PrecioParada1").value;
+        var pr2 = document.getElementById("PrecioParada2").value;
+        var pr3 = document.getElementById("PrecioParada3").value;
+        var pr4 = document.getElementById("PrecioParada4").value;
+
+        var p1 = document.getElementById("parada1").value;
+        var p2 = document.getElementById("parada2").value;
+        var p3 = document.getElementById("parada3").value;
+        var p4 = document.getElementById("parada4").value;
+
+        var x = document.getElementById("parada").value;
+
+        if (x === p1) {
+            document.getElementById("precio").innerHTML = pr1;
+        } else if (x === p2) {
+            document.getElementById("precio").innerHTML = pr2;
+        } else if (x === p3) {
+            document.getElementById("precio").innerHTML = pr3;
+        } else {
+            document.getElementById("precio").innerHTML = pr4;
+        }
+    }
+
+     function validar() {
+        //Aca aprendes. 
+        var parada;
+        parada = document.getElementById("parada").value;
+        if (parada === "") {
+            swal.fire({
+                title: "Error",
+                text: "Escoge tu destino",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        }else{
+            document.getElementById("loader").style.display = "block";
+        }
+    }
+    $('.seguir').on("click", function () {
+            document.getElementById("loader").style.display = "block";
+        });
+</script>
